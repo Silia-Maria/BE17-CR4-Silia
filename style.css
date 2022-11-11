@@ -32,3 +32,69 @@
     color: white;
     font-weight: 100;
 }
+
+
+/* Content */
+
+.content-header {
+    /* background-color: #E4DCCF; */
+    padding: 2em;
+}
+
+.media-heading {
+    font-family: 'Cormorant', serif;
+    text-transform: uppercase;
+    padding: 0.5em 0;
+    border-bottom: 1px solid grey;
+}
+
+
+/* Swiper */
+
+.swiper {
+    width: 100%;
+    height: 80vh;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-text {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    padding: 1em 0;
+    color: black;
+    border-bottom: 0.5px solid grey;
+}
+
+.card img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
