@@ -139,3 +139,15 @@ fieldset th {
     font-weight: 300;
     padding-bottom: 0;
 }
+
+
+/*
+-----------------
+delete.php 
+-----------------
+ */
+
+.img-thumbnail {
+    width: 40%;
+    height: auto;
+}

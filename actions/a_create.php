@@ -19,15 +19,15 @@ if ($_POST) {
     if (mysqli_query($connect, $sql) == TRUE) {
         $class = "success";
         $message = "Your entry below was successfully created: <br> <table class='table w-50'>
-        <tr>$title</tr>
-        <tr>$type</tr>
-        <tr>$isbn</tr>
-        <tr>$description</tr>
-        <tr>$author_fname</tr>
-        <tr>$author_lname</tr>
-        <tr>$publisher_name</tr>
-        <tr>$publisher_address</tr>
-        <tr>$publish_date</tr>
+        <tr>Title: $title <br></tr>
+        <tr>Type: $type <br></tr>
+        <tr>ISBN: $isbn <br></tr>
+        <tr>$description <br></tr>
+        <tr>$author_fname <br></tr>
+        <tr>$author_lname <br></tr>
+        <tr>$publisher_name <br></tr>
+        <tr>$publisher_address <br></tr>
+        <tr>$publish_date <br></tr>
         <tr>$status</tr>
         </table> <hr>";
     } else {
@@ -59,8 +59,8 @@ if ($_POST) {
             <h1>Create request response</h1>
         </div>
         <div class="alert alert-<?= $class; ?>" role="alert">
-            <p><?php echo ($message) ?? ''; ?></p>
-            <a href='../index.php'><button class="btn btn-primary" type='button'>Home</button></a>
+            <p><?php echo $message; ?></p>
+            <a href='../index.php'><button class="btn btn-outline-dark" type='button'>Home</button></a>
         </div>
     </div>
 

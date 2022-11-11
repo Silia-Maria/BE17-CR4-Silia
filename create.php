@@ -92,7 +92,10 @@
                     </tr>
                     <tr>
                         <th>Status*</th>
-                        <td><input type="text" name="status" placeholder="Status" class="w-100 form-control"></td>
+                        <td><select name="status" class="w-100 form-select form-control">
+                                <option value="available" selected>available</option>
+                                <option value="reserved">reserved</option>
+                            </select></td>
                     </tr>
 
                 </table>

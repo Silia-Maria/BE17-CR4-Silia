@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) > 0) {
 
             <button type='button' class='btn btn-outline-dark text-uppercase me-2'>Details</button>
             <button type='button' class='btn btn-outline-dark  text-uppercase mx-2'>Update</button>
-            <button type='button' class='btn btn-outline-dark text-uppercase ms-2'>Delete</button>
+            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-2'>Delete</button></a>
         </div>
     </div>";
         $type = $row['type'];
@@ -103,7 +103,6 @@ if (mysqli_num_rows($result) > 0) {
     <!-- Swiper -->
     <div class="container mb-5">
 
-
         <!--BOOKS SECTION-->
         <h2 class="media-heading" id="books">Books</h2>
         <div class="swiper mySwiper my-4">
@@ -112,7 +111,6 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
-
         </div>
 
         <!--CD SECTION-->
@@ -124,7 +122,6 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
-
         </div>
 
         <!--DVD SECTION-->
@@ -136,7 +133,6 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
-
         </div>
     </div>
 
@@ -156,10 +152,6 @@ if (mysqli_num_rows($result) > 0) {
             slidesPerGroup: 3,
             loop: true,
             loopFillGroupWithBlank: true,
-            // pagination: {
-            //     el: ".swiper-pagination",
-            //     clickable: true,
-            // },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
