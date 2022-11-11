@@ -97,7 +97,7 @@ if (mysqli_num_rows($result) > 0) {
     Content
 -------------------->
     <div class="content-header text-end">
-        <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-plus me-2"></i>add new media</button>
+        <a href="create.php"><button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-plus me-2"></i>add new media</button></a>
     </div>
 
     <!-- Swiper -->
@@ -112,7 +112,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
-            <div class="swiper-pagination text-dark"></div>
+
         </div>
 
         <!--CD SECTION-->
@@ -124,7 +124,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
-            <div class="swiper-pagination"></div>
+
         </div>
 
         <!--DVD SECTION-->
@@ -136,7 +136,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
-            <div class="swiper-pagination"></div>
+
         </div>
     </div>
 
@@ -156,10 +156,10 @@ if (mysqli_num_rows($result) > 0) {
             slidesPerGroup: 3,
             loop: true,
             loopFillGroupWithBlank: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
+            // pagination: {
+            //     el: ".swiper-pagination",
+            //     clickable: true,
+            // },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
