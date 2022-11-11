@@ -5,3 +5,8 @@
 
 <!--Font Awesome-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--Google Fonts --->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkalami&family=Archivo&family=Cormorant:wght@300&family=Great+Vibes&family=Lato:wght@300;400&family=Lobster+Two&family=Manrope&family=Mulish:wght@200;400&family=Oswald:wght@200;300;400&family=Roboto:wght@100;300;400&family=Sacramento&display=swap" rel="stylesheet">
