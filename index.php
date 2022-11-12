@@ -3,6 +3,7 @@ require_once "./actions/db_connect.php";
 
 $sql = "SELECT * FROM media";
 $result = mysqli_query($connect, $sql);
+$dummypic = "https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
 $bookswiper = "";
 $dvdswiper = "";
 $cdswiper = "";
@@ -21,6 +22,9 @@ if (mysqli_num_rows($result) > 0) {
             $class = "danger";
             $icon = "<i class='fa-solid fa-circle-xmark'></i>";
         }
+        if (empty($row['image'])) {
+            $row['image'] = $dummypic;
+        }
         $swiper = "<div class='swiper-slide'>
         <img src='$row[image]' alt=''>
 
@@ -29,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
             <p class='small text-$class'> $icon $row[status]</p>
 
             <button type='button' class='btn btn-outline-dark text-uppercase me-2'>Details</button>
-            <button type='button' class='btn btn-outline-dark  text-uppercase mx-2'>Update</button>
+            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-2'>Update</button></a>
             <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-2'>Delete</button></a>
         </div>
     </div>";
