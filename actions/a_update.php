@@ -18,9 +18,11 @@ if ($_POST) {
 
     if (mysqli_query($connect, $sql) == TRUE) {
         $class = "success";
+        $icon = "<i class='fa-solid fa-circle-check me-2'></i>";
         $message = "The record was successfully updated!";
     } else {
         $class = "danger";
+        $icon = "<i class='fa-solid fa-circle-xmark me-2'></i>";
         $message = "Error while updating record: <br>" . mysqli_connect_error();
     }
     mysqli_close($connect);
@@ -38,6 +40,8 @@ if ($_POST) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once "../components/styles.php" ?>
+    <link rel="stylesheet" href="../style.css">
+
     <title>Document</title>
 </head>
 
@@ -46,10 +50,10 @@ if ($_POST) {
         <div class="mt-3 mb-3">
             <h1>Update request response</h1>
         </div>
-        <div class="alert alert-<?php echo $class; ?>" role="alert">
-            <p><?php echo $message; ?></p>
-            <a href='../update.php?id=<?= $id; ?>'><button class="btn btn-warning" type='button'>Back</button></a>
-            <a href='../index.php'><button class="btn btn-success" type='button'>Home</button></a>
+        <div class="alert alert-<?php echo $class; ?> " role="alert">
+            <p class="fs-5"><?php echo $icon, $message; ?></p>
+            <a href='../update.php?id=<?= $id; ?>'><button class="btn btn-outline-dark" type='button'>Back</button></a>
+            <a href='../index.php'><button class="btn btn-outline-dark" type='button'>Home</button></a>
         </div>
     </div>
 </body>

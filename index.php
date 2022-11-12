@@ -4,6 +4,10 @@ require_once "./actions/db_connect.php";
 $sql = "SELECT * FROM media";
 $result = mysqli_query($connect, $sql);
 $dummypic = "https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
+$emptypic = "https://images.unsplash.com/photo-1610513320995-1ad4bbf25e55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
+$emptyswiper = "<div class='swiper-slide'>
+<img src='$emptypic' alt=''>   
+</div>";
 $bookswiper = "";
 $dvdswiper = "";
 $cdswiper = "";
@@ -12,9 +16,8 @@ $swiper = "";
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+        // Status available/reserved:
         $status = $row['status'];
-        $class = "";
-        $icon = "";
         if ($status == 'available') {
             $class = "success";
             $icon = "<i class='fa-solid fa-circle-check'></i>";
@@ -22,9 +25,11 @@ if (mysqli_num_rows($result) > 0) {
             $class = "danger";
             $icon = "<i class='fa-solid fa-circle-xmark'></i>";
         }
+        // When no picture is selected:
         if (empty($row['image'])) {
             $row['image'] = $dummypic;
         }
+        // general Swiper structure
         $swiper = "<div class='swiper-slide'>
         <img src='$row[image]' alt=''>
 
@@ -37,6 +42,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-2'>Delete</button></a>
         </div>
     </div>";
+        // Where books, cds, dvds should be printed
         $type = $row['type'];
         if ($type == 'book') {
             $bookswiper .= $swiper;
@@ -50,7 +56,26 @@ if (mysqli_num_rows($result) > 0) {
     $swiper = "sorry no data available";
 }
 
+// if Book row is empty 
+$sql = "SELECT * FROM media WHERE type = 'book'";
+$bookrow = mysqli_query($connect, $sql);
+if (mysqli_num_rows($bookrow) == 0) {
+    $bookswiper = $emptyswiper;
+}
 
+// if CD row is empty 
+$sql = "SELECT * FROM media WHERE type = 'CD'";
+$cdrow = mysqli_query($connect, $sql);
+if (mysqli_num_rows($cdrow) == 0) {
+    $cdswiper = $emptyswiper;
+}
+
+// if DVD row is empty 
+$sql = "SELECT * FROM media WHERE type = 'DVD'";
+$dvdrow = mysqli_query($connect, $sql);
+if (mysqli_num_rows($dvdrow) == 0) {
+    $dvdswiper = $emptyswiper;
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,9 +94,13 @@ if (mysqli_num_rows($result) > 0) {
 
 <body>
 
-    <!--
-    Dummy Image : https://images.unsplash.com/photo-1585521550659-64a7cafb39e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fGxpYnJhcnl8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60
--->
+    <!-- "<div class='swiper-slide'>
+            <img src='https://images.unsplash.com/photo-1609530180421-df41188eb3de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80' alt=''>
+    
+            <div class='slide-text'>
+                <p class='fs-4 text-uppercase mb-0'>No data available</p>
+            </div>
+        </div>"; -->
 
     <!------------------
     Nav Bar
@@ -79,7 +108,7 @@ if (mysqli_num_rows($result) > 0) {
 
     <nav class="navbar">
         <div class="container-fluid d-lfex justify-content-between">
-            <a class="navbar-brand fs-3">Vienna City Library</a>
+            <a class="navbar-brand fs-3" href="index.php">Vienna City Library</a>
             <i class="fa-solid fa-bars fs-3"></i>
         </div>
     </nav>

@@ -18,7 +18,7 @@
 
     <nav class="navbar">
         <div class="container-fluid d-lfex justify-content-between">
-            <a class="navbar-brand fs-3">Vienna City Library</a>
+            <a class="navbar-brand fs-3" href="index.php">Vienna City Library</a>
             <i class="fa-solid fa-bars fs-3"></i>
         </div>
     </nav>

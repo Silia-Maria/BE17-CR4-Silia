@@ -6,9 +6,11 @@ if ($_POST) {
     $sql = "DELETE FROM media Where id = {$id}";
     if (mysqli_query($connect, $sql) == TRUE) {
         $class = "success";
+        $icon = "<i class='fa-solid fa-circle-check me-2'></i>";
         $message = "Successfully Deleted!";
     } else {
         $class = "danger";
+        $icon = "<i class='fa-solid fa-circle-xmark me-2'></i>";
         $message = "The entry was not deleted due to:" . $connect->error;
     }
     mysqli_close($connect);
@@ -34,8 +36,8 @@ if ($_POST) {
             <h1>Delete request response</h1>
         </div>
         <div class="alert alert-<?= $class; ?>" role="alert">
-            <p><?= $message; ?></p>
-            <a href='../index.php'><button class="btn btn-success" type='button'>Home</button></a>
+            <p class="fs-5"><?= $icon, $message; ?></p>
+            <a href='../index.php'><button class="btn btn-outline-dark" type='button'>Home</button></a>
         </div>
     </div>
 

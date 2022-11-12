@@ -43,10 +43,30 @@ if ($_GET['id']) {
 
 <body>
 
+
+    <!------------------
+    Nav Bar
+-------------------->
+    <nav class="navbar">
+        <div class="container-fluid d-lfex justify-content-between">
+            <a class="navbar-brand fs-3" href="index.php">Vienna City Library</a>
+            <i class="fa-solid fa-bars fs-3"></i>
+        </div>
+    </nav>
+
+    <!------------------
+    Hero
+-------------------->
+    <div class="create-hero">
+        <div class="fs-2">
+            Update Media
+        </div>
+
+    </div>
+
     <!------------------
         Form
 -------------------->
-
     <div class="container">
 
         <fieldset class="my-5">
@@ -126,14 +146,12 @@ if ($_GET['id']) {
                             </select></td>
                     </tr>
 
-                    <tr>
-                        <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
-                        <a href="index.php"><button type="button" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-left-long me-2"></i>Go Back</button></a>
-                        <button type="submit" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-up me-2"></i>Update</button>
-                    </tr>
-
                 </table>
-
+                <div class="text-end">
+                    <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
+                    <a href="index.php"><button type="button" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-left-long me-2"></i>Go Back</button></a>
+                    <button type="submit" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-up me-2"></i>Update</button>
+                </div>
                 <p>*must be filled out.</p>
             </form>
         </fieldset>

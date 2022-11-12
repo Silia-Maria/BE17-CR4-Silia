@@ -19,16 +19,14 @@ if ($_POST) {
     if (mysqli_query($connect, $sql) == TRUE) {
         $class = "success";
         $message = "Your entry below was successfully created: <br> <table class='table w-50'>
-        <tr>Title: $title <br></tr>
+        <tr>Title: $title <br> </tr>
         <tr>Type: $type <br></tr>
         <tr>ISBN: $isbn <br></tr>
-        <tr>$description <br></tr>
-        <tr>$author_fname <br></tr>
-        <tr>$author_lname <br></tr>
-        <tr>$publisher_name <br></tr>
-        <tr>$publisher_address <br></tr>
-        <tr>$publish_date <br></tr>
-        <tr>$status</tr>
+        <tr>Description: $description <br></tr>
+        <tr>Author: $author_fname $author_lname<br></tr>
+        <tr>Publisher: $publisher_name, $publisher_address  <br></tr>
+        <tr>First Published: $publish_date <br></tr>
+        <tr>Status: $status</tr>
         </table> <hr>";
     } else {
         $class = "danger";
