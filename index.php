@@ -37,7 +37,7 @@ if (mysqli_num_rows($result) > 0) {
             <p class='fs-4 text-uppercase mb-0'>$row[title]</p>
             <p class='small text-$class'> $icon $row[status]</p>
 
-            <button type='button' class='btn btn-outline-dark text-uppercase me-2'>Details</button>
+            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-2'>Details</button></a>
             <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-2'>Update</button></a>
             <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-2'>Delete</button></a>
         </div>

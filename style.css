@@ -150,3 +150,15 @@ delete.php
     width: 30%;
     height: auto;
 }
+
+
+/*
+-----------------
+details.php 
+-----------------
+ */
+
+.book-info {
+    width: 60%;
+    text-align: end;
+}
