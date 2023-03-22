@@ -34,12 +34,12 @@ if (mysqli_num_rows($result) > 0) {
         <img src='$row[image]' alt=''>
 
         <div class='slide-text'>
-            <p class='fs-4 text-uppercase mb-0'>$row[title]</p>
+            <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
             <p class='small text-$class'> $icon $row[status]</p>
 
-            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-2'>Details</button></a>
-            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-2'>Update</button></a>
-            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-2'>Delete</button></a>
+            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
+            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
+            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
         </div>
     </div>";
         // Where books, cds, dvds should be printed
@@ -86,8 +86,9 @@ if (mysqli_num_rows($dvdrow) == 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once "./components/styles.php"; ?>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
 
     <title>Document</title>
 </head>
@@ -118,10 +119,10 @@ if (mysqli_num_rows($dvdrow) == 0) {
 -------------------->
     <div class="hero">
         <div class="hero-nav h1 text-center">
-            <a href="#books" class="me-3">Books</a>
-            <span class="me-3"> | </span>
-            <a href="#cd" class="me-3">CD's</a>
-            <span class="me-3"> | </span>
+            <a href="#books" class="me-md-3">Books</a>
+            <span class="me-md-3"> | </span>
+            <a href="#cd" class="me-md-3">CD's</a>
+            <span class="me-md-3"> | </span>
             <a href="#dvd">DVD's</a>
         </div>
     </div>
@@ -173,6 +174,18 @@ if (mysqli_num_rows($dvdrow) == 0) {
     <!------------------
    Footer
 -------------------->
+<div class="py-2 footer">
+        <div class="nav justify-content-center mt-3">
+            <a href="#"  class="me-3">Home</a>
+            <a href="#books" class="me-3">Books</a>
+            <a href="#cd" class="me-3">CD's</a>
+            <a href="#dvd" class="me-3">DVD's</a>    
+        </div>
+        <div class="small text-center text-secondary">
+            <p class=" mt-2 mb-0 ">&copy; Silia Cronauer 2022</p>
+            <p>*this website was created for educational purposes only!</p>
+        </div>
+</div>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -180,15 +193,27 @@ if (mysqli_num_rows($dvdrow) == 0) {
     <!-- Initialize Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
+            slidesPerView: 1,
             spaceBetween: 30,
-            slidesPerGroup: 3,
+            slidesPerGroup: 1,
             loop: true,
             loopFillGroupWithBlank: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            breakpoints: {
+               
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                }
+                              
+            }
         });
     </script>
 

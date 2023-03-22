@@ -78,16 +78,17 @@ if ($_GET['id']) {
     <!------------------
     Content
 -------------------->
-    <div class="container m-5">
-        <div class="d-flex justify-content-between">
-            <img src="<?php echo $image ?>" alt="<?php echo $title ?>" width="400" height="550">
-
-            <div class="book-info">
+    <div class="container my-3 my-md-5 ">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <img src="<?php echo $image ?>" alt="<?php echo $title ?>" class="media-img">
+            </div>
+            <div class="book-info col">
                 <!--Book Head-->
-                <div class="p-3">
-                    <h2><?php echo $title ?></h2>
+                <div class="pt-2 p-md-3 media-title">
+                    <h2 class="mb-0"><?php echo $title ?></h2>
                     <p>von <?php echo $author_fname . " " . $author_lname ?></p>
-                    <p class="mt-5"> <?php echo $description ?></p>
+                    <p class="mt-md-5"> <?php echo $description ?></p>
                 </div>
                 <!-- Details-->
                 <div class="mt-3 border border-black rounded p-3">

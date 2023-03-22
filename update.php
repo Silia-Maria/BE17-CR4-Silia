@@ -58,7 +58,7 @@ if ($_GET['id']) {
     Hero
 -------------------->
     <div class="create-hero">
-        <div class="fs-2">
+        <div class="fs-2 text-center">
             Update Media
         </div>
 
@@ -152,7 +152,7 @@ if ($_GET['id']) {
                     <a href="index.php"><button type="button" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-left-long me-2"></i>Go Back</button></a>
                     <button type="submit" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-up me-2"></i>Update</button>
                 </div>
-                <p>*must be filled out.</p>
+                <p class="mt-3 small mb-0 text-secondary">*must be filled out.</p>
             </form>
         </fieldset>
     </div>

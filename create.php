@@ -27,7 +27,7 @@
     Hero
 -------------------->
     <div class="create-hero">
-        <div class="fs-2">
+        <div class="fs-2 text-center">
             Updload new Media
         </div>
 
@@ -40,7 +40,7 @@
 
     <div class="container">
 
-        <fieldset class="my-5">
+        <fieldset class="my-2 my-md-5">
 
             <form action="actions/a_create.php" method="post" enctype="multipart/form-data">
                 <table class="table table-borderless">
@@ -100,10 +100,10 @@
 
                 </table>
                 <div class="text-end">
-                    <a href="index.php"><button type="button" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-left-long me-2"></i>Go Back</button></a>
+                    <a href="index.php"><button type="button" class="btn btn-outline-dark me-lg-2"><i class="fa-solid fa-arrow-left-long me-2"></i>Go Back</button></a>
                     <button type="submit" class="btn btn-outline-dark me-2"><i class="fa-solid fa-arrow-up me-2"></i>Upload Media</button>
                 </div>
-                <p>*must be filled out.</p>
+                <p class="mt-3 small mb-0 text-secondary">*must be filled out.</p>
             </form>
         </fieldset>
     </div>
