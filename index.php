@@ -207,10 +207,12 @@ if (mysqli_num_rows($dvdrow) == 0) {
                 768: {
                     slidesPerView: 2,
                     spaceBetween: 30,
+                    slidesPerGroup: 2,
                 },
                 1024: {
                     slidesPerView: 3,
                     spaceBetween: 30,
+                    slidesPerGroup: 3,    
                 }
                               
             }
