@@ -43,7 +43,7 @@ if ($_GET['id']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once "./components/styles.php" ?>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Vienna City Library</title>
 </head>
 
 <body>

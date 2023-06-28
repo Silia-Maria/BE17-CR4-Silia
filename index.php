@@ -8,11 +8,85 @@ $emptypic = "https://images.unsplash.com/photo-1610513320995-1ad4bbf25e55?ixlib=
 $emptyswiper = "<div class='swiper-slide'>
 <img src='$emptypic' alt=''>   
 </div>";
-$bookswiper = "";
-$dvdswiper = "";
-$cdswiper = "";
-$swiper = "";
+// OLD VERSION!!!
+// $bookswiper = "";
+// $dvdswiper = "";
+// $cdswiper = "";
+// $swiper = "";
 
+
+
+
+// if (mysqli_num_rows($result) > 0) {
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         // Status available/reserved:
+//         $status = $row['status'];
+//         if ($status == 'available') {
+//             $class = "success";
+//             $icon = "<i class='fa-solid fa-circle-check'></i>";
+//         } else {
+//             $class = "danger";
+//             $icon = "<i class='fa-solid fa-circle-xmark'></i>";
+//         }
+//         // When no picture is selected:
+//         if (empty($row['image'])) {
+//             $row['image'] = $dummypic;
+//         }
+//         // general Swiper structure
+//         $swiper = "<div class='swiper-slide'>
+//         <img src='$row[image]' alt=''>
+
+//         <div class='slide-text'>
+//             <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
+//             <p class='small text-$class'> $icon $row[status]</p>
+
+//             <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
+//             <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
+//             <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
+//         </div>
+//     </div>";
+//         // Where books, cds, dvds should be printed
+//         $type = $row['type'];
+//         if ($type == 'book') {
+//             $bookswiper .= $swiper;
+//         } else if ($type == 'CD') {
+//             $cdswiper .= $swiper;
+//         } else {
+//             $dvdswiper .= $swiper;
+//         };
+//     }
+// } else {
+//     $swiper = "sorry no data available";
+// }
+
+// // if Book row is empty 
+// $sql = "SELECT * FROM media WHERE type = 'book'";
+// $bookrow = mysqli_query($connect, $sql);
+// if (mysqli_num_rows($bookrow) == 0) {
+//     $bookswiper = $emptyswiper;
+// }
+
+// // if CD row is empty 
+// $sql = "SELECT * FROM media WHERE type = 'CD'";
+// $cdrow = mysqli_query($connect, $sql);
+// if (mysqli_num_rows($cdrow) == 0) {
+//     $cdswiper = $emptyswiper;
+// }
+
+// // if DVD row is empty 
+// $sql = "SELECT * FROM media WHERE type = 'DVD'";
+// $dvdrow = mysqli_query($connect, $sql);
+// if (mysqli_num_rows($dvdrow) == 0) {
+//     $dvdswiper = $emptyswiper;
+// }
+
+
+// TRY NEW!!
+$swipers = array(
+    'book' => array(),
+    'CD' => array(),
+    'DVD' => array()
+);
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -31,51 +105,102 @@ if (mysqli_num_rows($result) > 0) {
         }
         // general Swiper structure
         $swiper = "<div class='swiper-slide'>
-        <img src='$row[image]' alt=''>
+            <img src='$row[image]' alt=''>
 
-        <div class='slide-text'>
-            <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
-            <p class='small text-$class'> $icon $row[status]</p>
+            <div class='slide-text'>
+                <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
+                <p class='small text-$class'> $icon $row[status]</p>
 
-            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
-            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
-            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
-        </div>
-    </div>";
+                <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
+                <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
+                <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
+            </div>
+        </div>";
         // Where books, cds, dvds should be printed
         $type = $row['type'];
-        if ($type == 'book') {
-            $bookswiper .= $swiper;
-        } else if ($type == 'CD') {
-            $cdswiper .= $swiper;
-        } else {
-            $dvdswiper .= $swiper;
-        };
+        if (array_key_exists($type, $swipers)) {
+            $swipers[$type][] = $swiper;
+        }
     }
 } else {
     $swiper = "sorry no data available";
 }
 
-// if Book row is empty 
+// if Book row is empty
 $sql = "SELECT * FROM media WHERE type = 'book'";
 $bookrow = mysqli_query($connect, $sql);
 if (mysqli_num_rows($bookrow) == 0) {
-    $bookswiper = $emptyswiper;
-}
+    $swipers['book'][] = $emptyswiper;
+} 
+// else {
+//     $swipers['book'] = array();
+//     while ($row = mysqli_fetch_assoc($bookrow)) {
+//        $swiper = "<div class='swiper-slide'>
+//        <img src='$row[image]' alt=''>
 
-// if CD row is empty 
+//        <div class='slide-text'>
+//            <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
+//            <p class='small text-$class'> $icon $row[status]</p>
+
+//            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
+//            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
+//            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
+//        </div>
+//    </div>";
+//    $swipers['book'][] = $swiper;
+//     }
+// }
+
+// if CD row is empty
 $sql = "SELECT * FROM media WHERE type = 'CD'";
 $cdrow = mysqli_query($connect, $sql);
 if (mysqli_num_rows($cdrow) == 0) {
-    $cdswiper = $emptyswiper;
-}
+    $swipers['CD'][] = $emptyswiper;
+} 
+// else {
+//     $swipers['CD'] = array();
+//     while ($row = mysqli_fetch_assoc($cdrow)) {
+//        $swiper = "<div class='swiper-slide'>
+//        <img src='$row[image]' alt=''>
 
-// if DVD row is empty 
+//        <div class='slide-text'>
+//            <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
+//            <p class='small text-$class'> $icon $row[status]</p>
+
+//            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
+//            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
+//            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
+//        </div>
+//    </div>";
+//    $swipers['CD'][] = $swiper;
+//     }
+// }
+
+// if DVD row is empty
 $sql = "SELECT * FROM media WHERE type = 'DVD'";
 $dvdrow = mysqli_query($connect, $sql);
 if (mysqli_num_rows($dvdrow) == 0) {
-    $dvdswiper = $emptyswiper;
+    $swipers['DVD'][] = $emptyswiper;
 }
+// else {
+//     $swipers['DVD'] = array();
+//     while ($row = mysqli_fetch_assoc($dvdrow)) {
+//        $swiper = "<div class='swiper-slide'>
+//        <img src='$row[image]' alt=''>
+
+//        <div class='slide-text'>
+//            <p class='title-heading text-uppercase mb-0 text-truncate'>$row[title]</p>
+//            <p class='small text-$class'> $icon $row[status]</p>
+
+//            <a href='details.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase me-xl-2'>Details</button></a>
+//            <a href='update.php?id=$row[id]'><button type='button' class='btn btn-outline-dark  text-uppercase mx-xl-2'>Update</button></a>
+//            <a href='delete.php?id=$row[id]'><button type='button' class='btn btn-outline-dark text-uppercase ms-xl-2'>Delete</button></a>
+//        </div>
+//    </div>";
+//    $swipers['DVD'][] = $swiper;
+//     }
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -87,10 +212,11 @@ if (mysqli_num_rows($dvdrow) == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once "./components/styles.php"; ?>
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
 
-    <title>Document</title>
+    <title>Vienna City Library</title>
 </head>
 
 <body>
@@ -141,7 +267,9 @@ if (mysqli_num_rows($dvdrow) == 0) {
         <h2 class="media-heading" id="books">Books</h2>
         <div class="swiper mySwiper my-4">
             <div class="swiper-wrapper">
-                <?php echo $bookswiper; ?>
+                <?php foreach ($swipers['book'] as $swiper) {
+                    echo $swiper;
+                } ?>
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
@@ -152,7 +280,9 @@ if (mysqli_num_rows($dvdrow) == 0) {
         <h2 class="media-heading" id="cd">Cd's</h2>
         <div class="swiper mySwiper my-4">
             <div class="swiper-wrapper">
-                <?php echo $cdswiper; ?>
+                <?php foreach ($swipers['CD'] as $swiper) {
+                   echo $swiper;
+                }?>
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
@@ -163,7 +293,9 @@ if (mysqli_num_rows($dvdrow) == 0) {
         <h2 class="media-heading" id="dvd">Dvd's</h2>
         <div class="swiper mySwiper my-4">
             <div class="swiper-wrapper">
-                <?php echo $dvdswiper; ?>
+            <?php foreach ($swipers['DVD'] as $swiper) {
+                   echo $swiper;
+                }?>
             </div>
             <div class="swiper-button-next text-light"></div>
             <div class="swiper-button-prev text-light"></div>
@@ -188,31 +320,38 @@ if (mysqli_num_rows($dvdrow) == 0) {
 </div>
 
     <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
 
     <!-- Initialize Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
             spaceBetween: 30,
-            slidesPerGroup: 1,
+            // slidesPerGroup: 1,
             loop: true,
             loopFillGroupWithBlank: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+
             breakpoints: {
                
                 768: {
                     slidesPerView: 2,
                     spaceBetween: 30,
-                    slidesPerGroup: 2,
+                    // slidesPerGroup: 2,
                 },
                 1024: {
                     slidesPerView: 3,
                     spaceBetween: 30,
-                    slidesPerGroup: 3,    
+                    // slidesPerGroup: 1,    
                 }
                               
             }
